@@ -9,7 +9,7 @@ const TabIcon = ({focused, icon, title} : {focused: boolean, icon: any, title: s
         return (
             <ImageBackground
                 source={images.highlight}
-                className='flex flex-row w-full flex-1 items-center justify-center min-w-[112px] min-h-14 mt-4 rounded-full overflow-hidden'
+                className='flex flex-row w-full flex-1 items-center justify-center min-w-[112px] min-h-16 mt-4 rounded-full overflow-hidden'
             >
                 <Image 
                     source={icon} 
@@ -23,7 +23,7 @@ const TabIcon = ({focused, icon, title} : {focused: boolean, icon: any, title: s
           )
     }else{
         return (
-            <View>
+            <View className='size-full justify-center items-center mt-4 rounded-full'>
                 <Image 
                     source={icon} 
                     tintColor="#A8B5DB"
@@ -37,7 +37,28 @@ const TabIcon = ({focused, icon, title} : {focused: boolean, icon: any, title: s
 
 const TabsLayout = () => {
   return (
-    <Tabs>
+    <Tabs
+        screenOptions={{
+            tabBarShowLabel: false,
+            tabBarStyle: {
+                backgroundColor: '#0f0d23',
+                borderRadius: 50,
+                marginHorizontal: 20,
+                marginBottom: 36,
+                height: 52,
+                position: 'absolute',
+                overflow: 'hidden',
+                borderWidth: 1,
+                borderColor: '#0f0d23'
+            },
+            tabBarItemStyle: {
+                width: '100%',
+                height: '100%',
+                justifyContent: 'center',
+                alignItems: 'center'
+            }
+        }}
+    >
       <Tabs.Screen 
         name='index' 
         options={{ 

@@ -5,6 +5,7 @@ import SearchBar from "@/components/SearchBar";
 import { useRouter } from "expo-router";
 import useFetch from "@/services/useFetch";
 import { fetchMovies } from "@/services/tmdb.api";
+import MovieCard from "@/components/MovieCard";
 
 export default function Index() {
   const router = useRouter();
@@ -55,7 +56,7 @@ export default function Index() {
 
                 }}
                 renderItem={({ item }) => (
-                  <Text className="text-white text-sm">{item.title}</Text>
+                  <MovieCard {... item} />
                 )}
               />
             </>

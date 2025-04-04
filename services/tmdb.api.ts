@@ -8,15 +8,19 @@ export const TMDB_CONFIG = {
 };
 
 export const fetchMovies = async ({keyword}: {keyword: string}) => {
-    //https://api.themoviedb.org/3/keyword/{keyword_id}/movies
-    const endpoint = `${TMDB_CONFIG.API_URL}keyword/${keyword}/movies`;
-    const response = await fetch(endpoint, {
+    //keyword/{keyword_id}/movies
+    //movie/popular?language=en-US&page=1
+    const endpoint = keyword
+        ? `keyword/${keyword}/movies`
+        : `movie/popular?language=en-US&page=1`;
+
+    const response = await fetch(`${TMDB_CONFIG.API_URL}${endpoint}`, {
         method: 'GET',
         headers: TMDB_CONFIG.headers,
     });
 
     if (!response.ok) {
-        // @s-ignore
+        // @ts-ignore
         throw new Error('Failed to fetch movies', response.statusText);
     }
     const data = await response.json();

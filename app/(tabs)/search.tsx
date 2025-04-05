@@ -1,11 +1,11 @@
-import { ActivityIndicator, FlatList, Image, Text, View,  NativeSyntheticEvent, TextInputFocusEventData } from 'react-native'
+import { ActivityIndicator, FlatList, Image, Text, View} from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { images } from '@/constants/images'
 import MovieCard from '@/components/MovieCard'
 import useFetch from '@/services/useFetch'
 import { fetchMovies } from '@/services/tmdb.api'
 import { icons } from '@/constants/icons'
-import { SearchBar } from 'react-native-screens'
+import SearchBar from '@/components/SearchBar'
 
 const Search = () => {
   // const route = useRoute();
@@ -22,8 +22,7 @@ const Search = () => {
     keyword: searchKeyword,
   }), false);
 
-  const handleSearch = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
-    const text = (e as any).nativeEvent.text || '';
+  const handleSearch = (text:string) => {
     setSearchKeyword(text);
   }
   
@@ -62,19 +61,18 @@ const Search = () => {
 
         }}
         renderItem={({item}) => <MovieCard {... item} />}
+        contentContainerStyle={{ paddingBottom: 100 }}
         ListHeaderComponent={
           <>
             <View className="w-full flex-row justify-center mt-20 items-center">
               <Image source={icons.logo} className="w-12 h-10" />
             </View>
-            <View className="my-5">
-              <SearchBar
-                placeholder="Search for a movie"
-                value={searchKeyword}
-                onChangeText={handleSearch}     
-              />
-            </View>
             
+            <SearchBar
+              placeholder="Search for a movie"
+              value={searchKeyword}
+              onChangeText={handleSearch}     
+            />
             {loading && (
               <ActivityIndicator
                 size="large"

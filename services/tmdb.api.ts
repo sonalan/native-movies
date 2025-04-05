@@ -14,8 +14,10 @@ export const fetchMovies = async ({keyword}: {keyword: string}) => {
     //keyword/{keyword_id}/movies
     //movie/popular?language=en-US&page=1
     const endpoint = keyword
-        ? `keyword/${keyword}/movies`
+        ? `search/movie?query=${encodeURIComponent(keyword)}`
         : `movie/popular?language=en-US&page=1`;
+        //discover/movie?sort_by=popularity.desc
+    
 
     const response = await fetch(`${TMDB_CONFIG.API_URL}${endpoint}`, {
         method: 'GET',

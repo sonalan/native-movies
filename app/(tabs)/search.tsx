@@ -88,6 +88,16 @@ const Search = () => {
                 Error: {error.message}
               </Text>
             )}
+
+            {!loading &&
+              !error &&
+              searchKeyword.trim() &&
+              movies?.length! > 0 && (
+                <Text className="text-xl text-white font-bold">
+                  Search Results for{" "}
+                  <Text className="text-accent">{searchKeyword}</Text>
+                </Text>
+            )}
           </>
         }
       

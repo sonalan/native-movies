@@ -28,14 +28,15 @@ const Search = () => {
   }
   
   useEffect(() => {
-    const func = async () => {
-      if(searchKeyword.trim()){
+    const timeoutId = setTimeout(async () => {
+      if (searchKeyword.trim()) {
         await loadMovies();
-      }else{
-         reset();
+      } else {
+        reset();
       }
-    }
-    func();
+    }, 500);
+    
+    return () => clearTimeout(timeoutId);
   }, [searchKeyword])
 
   return (
